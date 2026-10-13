@@ -1,59 +1,138 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
-  <title id="title">Ángela Charcuterie icon</title>
-  <desc id="desc">App icon with a stylized A inside a circular emblem and botanical accents.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Ángela Charcuterie</title>
+  <desc id="desc">Brand icon consolidated in a single SVG. Use the app icon by default or toggle the full logo with the full-visible class.</desc>
+
+  <style>
+    .app-icon { display: block; }
+    .full-logo { display: none; }
+    .full-visible .app-icon { display: none; }
+    .full-visible .full-logo { display: block; }
+  </style>
 
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#f6efe5"/>
-      <stop offset="100%" stop-color="#efe2d4"/>
+    <linearGradient id="bgSoft" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7f0e7"/>
+      <stop offset="100%" stop-color="#efe2d3"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.10"/>
+    <filter id="shadowSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000" flood-opacity="0.10"/>
     </filter>
   </defs>
 
-  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g class="app-icon">
+    <rect width="1024" height="1024" fill="url(#bgSoft)"/>
 
-  <g filter="url(#shadow)">
-    <circle cx="512" cy="512" r="390" fill="none" stroke="#3a211d" stroke-width="12"/>
-    <circle cx="512" cy="512" r="360" fill="none" stroke="#5b2c2a" stroke-width="8" opacity="0.8"/>
+    <g filter="url(#shadowSoft)">
+      <circle cx="512" cy="512" r="390" fill="none" stroke="#3a211d" stroke-width="12"/>
+      <circle cx="512" cy="512" r="352" fill="none" stroke="#5b2c2a" stroke-width="8" opacity="0.8"/>
+    </g>
+
+    <g fill="#6f8f4d" stroke="#3a211d" stroke-width="2" stroke-linejoin="round">
+      <path d="M183 330 C203 250, 236 205, 281 182 C317 163, 369 170, 396 208 C349 217, 313 250, 293 293 C313 286, 341 283, 371 292 C326 339, 254 355, 183 330 Z"/>
+      <path d="M819 314 C848 260, 906 244, 949 271 C920 293, 886 325, 861 365 C839 348, 812 335, 782 329 C800 311, 805 299, 819 314 Z"/>
+      <path d="M214 668 C170 620, 162 561, 194 510 C233 446, 300 431, 346 468 C316 483, 286 511, 265 550 C293 542, 328 547, 359 565 C303 613, 254 650, 214 668 Z"/>
+      <path d="M810 687 C854 644, 915 643, 959 680 C929 699, 892 729, 867 772 C839 757, 807 746, 773 742 C789 716, 799 702, 810 687 Z"/>
+      <path d="M326 260 C337 206, 390 152, 457 141 C504 133, 552 156, 575 196 C540 194, 499 214, 475 247 C498 241, 528 246, 553 263 C507 308, 442 325, 326 260 Z"/>
+      <path d="M698 255 C715 205, 777 177, 841 185 C888 191, 924 223, 941 265 C910 269, 868 286, 840 323 C819 309, 797 300, 770 298 C767 277, 750 265, 698 255 Z"/>
+      <path d="M294 756 C298 713, 342 672, 409 667 C453 664, 490 682, 515 713 C486 716, 453 733, 430 762 C450 760, 477 766, 501 782 C470 817, 416 838, 294 756 Z"/>
+      <path d="M726 756 C734 709, 790 668, 854 673 C902 676, 938 705, 953 743 C922 742, 886 756, 860 783 C883 778, 913 778, 936 793 C905 824, 850 842, 726 756 Z"/>
+    </g>
+
+    <g fill="#d7a66b" stroke="#3d2b29" stroke-width="4" stroke-linejoin="round">
+      <path d="M718 585 C782 543, 845 553, 880 607 C853 621, 819 630, 789 670 C756 655, 735 628, 718 585 Z"/>
+      <circle cx="790" cy="615" r="26" fill="#eb7d3a"/>
+      <circle cx="834" cy="651" r="22" fill="#eb7d3a"/>
+      <circle cx="758" cy="655" r="22" fill="#eb7d3a"/>
+      <circle cx="800" cy="576" r="18" fill="#da6d2e"/>
+      <circle cx="862" cy="603" r="16" fill="#da6d2e"/>
+      <circle cx="735" cy="620" r="16" fill="#da6d2e"/>
+    </g>
+
+    <g stroke="#3a211d" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M442 316 L512 170 L582 316" stroke-width="30"/>
+      <path d="M468 266 H556" stroke-width="22"/>
+      <path d="M440 430 C470 480, 545 486, 580 440 C618 390, 621 344, 605 291" stroke-width="16"/>
+      <path d="M352 443 C318 420, 292 390, 288 346 C286 303, 310 268, 350 252" stroke-width="14"/>
+      <path d="M673 435 C703 396, 741 374, 778 374 C821 374, 849 400, 855 447" stroke-width="14"/>
+    </g>
+
+    <g fill="#3a211d" stroke="#3a211d" stroke-width="1.5">
+      <path d="M512 728 C544 704, 571 699, 599 724 C584 752, 556 772, 512 798 C468 772, 440 752, 425 724 C453 699, 480 704, 512 728 Z"/>
+    </g>
+
+    <g fill="#6f8f4d" stroke="#3a211d" stroke-width="2">
+      <path d="M512 770 C537 754, 550 718, 556 682 C571 703, 579 728, 585 749 C566 746, 548 751, 529 770 C518 770, 514 770, 512 770 Z"/>
+      <path d="M512 770 C487 754, 474 718, 468 682 C453 703, 445 728, 439 749 C458 746, 476 751, 495 770 C506 770, 510 770, 512 770 Z"/>
+    </g>
   </g>
 
-  <g fill="#6f8f4d" stroke="#3a211d" stroke-width="2" stroke-linejoin="round">
-    <path d="M183 330 C203 250, 236 205, 281 182 C317 163, 369 170, 396 208 C349 217, 313 250, 293 293 C313 286, 341 283, 371 292 C326 339, 254 355, 183 330 Z"/>
-    <path d="M819 314 C848 260, 906 244, 949 271 C920 293, 886 325, 861 365 C839 348, 812 335, 782 329 C800 311, 805 299, 819 314 Z"/>
-    <path d="M214 668 C170 620, 162 561, 194 510 C233 446, 300 431, 346 468 C316 483, 286 511, 265 550 C293 542, 328 547, 359 565 C303 613, 254 650, 214 668 Z"/>
-    <path d="M810 687 C854 644, 915 643, 959 680 C929 699, 892 729, 867 772 C839 757, 807 746, 773 742 C789 716, 799 702, 810 687 Z"/>
-    <path d="M326 260 C337 206, 390 152, 457 141 C504 133, 552 156, 575 196 C540 194, 499 214, 475 247 C498 241, 528 246, 553 263 C507 308, 442 325, 326 260 Z"/>
-    <path d="M698 255 C715 205, 777 177, 841 185 C888 191, 924 223, 941 265 C910 269, 868 286, 840 323 C819 309, 797 300, 770 298 C767 277, 750 265, 698 255 Z"/>
-    <path d="M294 756 C298 713, 342 672, 409 667 C453 664, 490 682, 515 713 C486 716, 453 733, 430 762 C450 760, 477 766, 501 782 C470 817, 416 838, 294 756 Z"/>
-    <path d="M726 756 C734 709, 790 668, 854 673 C902 676, 938 705, 953 743 C922 742, 886 756, 860 783 C883 778, 913 778, 936 793 C905 824, 850 842, 726 756 Z"/>
-  </g>
+  <g class="full-logo">
+    <rect width="1400" height="1200" fill="url(#bgSoft)"/>
 
-  <g fill="#d7a66b" stroke="#3d2b29" stroke-width="4" stroke-linejoin="round">
-    <path d="M 718 585 C 782 543, 845 553, 880 607 C 853 621, 819 630, 789 670 C 756 655, 735 628, 718 585 Z"/>
-    <circle cx="790" cy="615" r="26" fill="#eb7d3a"/>
-    <circle cx="834" cy="651" r="22" fill="#eb7d3a"/>
-    <circle cx="758" cy="655" r="22" fill="#eb7d3a"/>
-    <circle cx="800" cy="576" r="18" fill="#da6d2e"/>
-    <circle cx="862" cy="603" r="16" fill="#da6d2e"/>
-    <circle cx="735" cy="620" r="16" fill="#da6d2e"/>
-  </g>
+    <g opacity="0.98" stroke="#2f3d2c" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="700" cy="430" r="390" fill="none" stroke="#3d2f2a" stroke-width="10"/>
 
-  <g stroke="#3a211d" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M442 316 L 512 170 L 582 316" stroke-width="30"/>
-    <path d="M468 266 H556" stroke-width="22"/>
-    <path d="M440 430 C 470 480, 545 486, 580 440 C 618 390, 621 344, 605 291" stroke-width="16"/>
-    <path d="M352 443 C 318 420, 292 390, 288 346 C 286 303, 310 268, 350 252" stroke-width="14"/>
-    <path d="M673 435 C 703 396, 741 374, 778 374 C 821 374, 849 400, 855 447" stroke-width="14"/>
-  </g>
+      <g fill="#6d8f4d" stroke="#6d8f4d">
+        <path d="M 240 362 C 220 285, 237 227, 287 188 C 323 159, 372 165, 396 198 C 350 205, 324 236, 315 270 C 335 258, 365 254, 392 263 C 352 304, 300 332, 240 362 Z"/>
+        <path d="M 323 226 C 307 170, 333 123, 384 102 C 416 89, 456 96, 479 126 C 431 137, 396 167, 381 207 C 400 201, 429 199, 458 210 C 428 247, 386 266, 323 226 Z"/>
+        <path d="M 905 318 C 948 286, 998 295, 1042 338 C 1006 353, 963 382, 940 423 C 919 397, 894 373, 865 354 C 885 344, 905 333, 905 318 Z"/>
+        <path d="M 940 390 C 981 354, 1036 360, 1080 405 C 1042 417, 1004 448, 983 484 C 965 459, 932 438, 900 430 C 925 420, 937 404, 940 390 Z"/>
+        <path d="M 188 538 C 151 490, 151 432, 196 395 C 234 365, 288 367, 330 404 C 299 411, 269 435, 251 470 C 278 458, 308 461, 337 476 C 288 533, 235 552, 188 538 Z"/>
+        <path d="M 1010 560 C 1045 527, 1087 524, 1128 553 C 1095 568, 1056 597, 1037 630 C 1010 604, 979 581, 945 575 C 975 564, 993 560, 1010 560 Z"/>
+      </g>
 
-  <g fill="#3a211d" stroke="#3a211d" stroke-width="1.5">
-    <path d="M512 728 C 544 704, 571 699, 599 724 C 584 752, 556 772, 512 798 C 468 772, 440 752, 425 724 C 453 699, 480 704, 512 728 Z"/>
-  </g>
+      <g fill="#d8a15d" stroke="#3d2b29" stroke-width="4">
+        <path d="M 822 685 C 862 624, 915 606, 961 640 C 936 660, 899 673, 868 717 C 837 703, 825 687, 822 685 Z"/>
+        <circle cx="900" cy="670" r="31" fill="#eb7d3a" stroke="#3b2a27"/>
+        <circle cx="947" cy="710" r="28" fill="#eb7d3a" stroke="#3b2a27"/>
+        <circle cx="873" cy="728" r="27" fill="#eb7d3a" stroke="#3b2a27"/>
+        <circle cx="905" cy="605" r="22" fill="#da6d2e" stroke="#3b2a27"/>
+        <circle cx="964" cy="655" r="19" fill="#da6d2e" stroke="#3b2a27"/>
+        <circle cx="838" cy="685" r="20" fill="#d76c25" stroke="#3b2a27"/>
+        <circle cx="889" cy="777" r="18" fill="#d76c25" stroke="#3b2a27"/>
+      </g>
+    </g>
 
-  <g fill="#6f8f4d" stroke="#3a211d" stroke-width="2">
-    <path d="M 512 770 C 537 754, 550 718, 556 682 C 571 703, 579 728, 585 749 C 566 746, 548 751, 529 770 C 518 770, 514 770, 512 770 Z"/>
-    <path d="M 512 770 C 487 754, 474 718, 468 682 C 453 703, 445 728, 439 749 C 458 746, 476 751, 495 770 C 506 770, 510 770, 512 770 Z"/>
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#3a1d1b">
+      <text x="700" y="224" text-anchor="middle" font-size="34" letter-spacing="4" style="font-style:italic;">HECHO CON DETALLES, COMPARTIDO CON AMOR</text>
+    </g>
+
+    <g stroke="#3a1d1b" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadowSoft)">
+      <path d="M 500 460 L 700 200 L 900 460" stroke-width="28"/>
+      <path d="M 561 380 L 839 380" stroke-width="22"/>
+      <path d="M 548 610 C 594 655, 683 661, 726 612 C 772 558, 770 486, 750 420" stroke-width="18"/>
+      <path d="M 465 610 C 417 585, 373 557, 360 504 C 343 441, 370 372, 414 350" stroke-width="18"/>
+    </g>
+
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#3a1d1b">
+      <text x="700" y="790" text-anchor="middle" font-size="165" font-weight="700" letter-spacing="12">ÁNGELA</text>
+      <text x="700" y="872" text-anchor="middle" font-size="42" letter-spacing="8" style="font-style:italic;">CHARCUTERIE</text>
+    </g>
+
+    <g fill="none" stroke="#3a1d1b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 300 920 H 500"/>
+      <path d="M 900 920 H 1100"/>
+      <path d="M 487 924 C 516 905, 530 879, 530 851 C 518 842, 500 842, 490 855 C 476 843, 460 844, 447 852 C 447 878, 464 907, 487 924 Z" fill="#4f7d46" stroke="#2f3d2c"/>
+      <path d="M 913 924 C 942 905, 956 879, 956 851 C 944 842, 926 842, 916 855 C 902 843, 886 844, 873 852 C 873 878, 890 907, 913 924 Z" fill="#4f7d46" stroke="#2f3d2c"/>
+    </g>
+
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#3a1d1b" text-anchor="middle">
+      <text x="700" y="1006" font-size="54" font-style="italic">Dulces momentos y charcutería</text>
+    </g>
+
+    <g>
+      <g transform="translate(252,1068)">
+        <rect x="0" y="0" width="44" height="44" rx="22" fill="#f3a385"/>
+        <circle cx="22" cy="22" r="12" fill="#202020"/>
+        <path d="M 22 31 C 12 39, 8 46, 22 54 C 36 46, 32 39, 22 31 Z" fill="#202020"/>
+      </g>
+      <text x="320" y="1098" font-size="36" fill="#3a1d1b" font-family="Georgia, 'Times New Roman', serif">angela_charcuterie</text>
+
+      <g transform="translate(890,1068)">
+        <rect x="0" y="0" width="48" height="48" rx="24" fill="#5b1c1d"/>
+        <path d="M 18 18 C 26 9, 38 10, 43 19 C 42 15, 38 9, 31 7 C 19 6, 10 15, 9 26 C 5 25, 2 28, 2 32 C 2 39, 8 43, 15 43 C 13 36, 14 27, 18 18 Z" fill="#fff"/>
+      </g>
+      <text x="960" y="1098" font-size="36" fill="#3a1d1b" font-family="Georgia, 'Times New Roman', serif">8294913563</text>
+    </g>
   </g>
 </svg>
