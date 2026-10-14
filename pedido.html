@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f4e78"><title>Haz tu pedido</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--tx:#1d2733;--mu:#6b7785;--ac:#1f4e78;--acx:#fff;--bd:#d9dee4;--bad:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root{--bg:#14181d;--card:#1d242c;--tx:#e8edf2;--mu:#9aa6b2;--ac:#6fa8dc;--acx:#10161c;--bd:#33404d;--bad:#ff7b6b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 Arial,Helvetica,sans-serif}
+header{padding:14px 16px;background:var(--card);border-bottom:1px solid var(--bd)}h1{font-size:19px;margin:0}
+main{max-width:720px;margin:0 auto;padding:12px 14px 40px;display:grid;gap:12px}
+button,input,select,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;min-height:44px;width:100%}
+button{cursor:pointer;width:auto;touch-action:manipulation}button.pri{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:bold}button:disabled{opacity:.5}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;display:grid;gap:8px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}.tile{display:flex;flex-direction:column;gap:2px;text-align:left;width:100%}.tile small{color:var(--mu)}
+.ln{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}.ln button{padding:4px 12px;min-height:38px}.tt{display:flex;justify-content:space-between}.big{font-size:18px;font-weight:bold}
+.mu{color:var(--mu);font-size:13px}.msg{color:var(--bad)}.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+</style></head><body>
+<header><h1 id="bz">Haz tu pedido</h1></header><main id="m"><p>Cargando…</p></main>
+<script>
+// ▼ Pega aquí la URL de tu Apps Script (la misma de la app, termina en /exec). No es secreta.
+const API='https://script.google.com/macros/s/AKfycbwH6odWAL6eCLvVIFHwM6kYPSm0RLZQm12SyHVTsO6E4mYTxczlBpkjuzTl_tq8xww4VQ/exec';
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'RD$ '+(+n||0).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2});
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+let C=null,cart=ld('pd_cart',{}),form=ld('pd_form',{}),q='',oid=null,done=null,busy=false,msg='';
+const ERR={off:'Los pedidos por internet no están disponibles en este momento.',busy:'Hay muchos pedidos ahora mismo. Intenta de nuevo en unos minutos.',fecha:'Elige una fecha de entrega desde hoy hasta dentro de 60 días.',bad:'Revisa tus datos: nombre, teléfono y al menos un producto.',net:'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo (no se duplicará el pedido).'};
+const P=c=>C.products.find(p=>p.code===c);
+const lines=()=>Object.keys(cart).filter(c=>cart[c]>0&&P(c)).map(c=>({p:P(c),q:cart[c]}));
+const tot=()=>{const s=lines().reduce((t,l)=>t+l.p.price*l.q,0),i=s*C.rate/100;return{s,i,t:s+i}};
+function orderText(no){const T=tot();return 'Hola, hice el pedido '+(no||'')+' en '+C.biz+':\n'+lines().map(l=>l.q+' x '+l.p.name).join('\n')+'\nTotal: '+money(T.t)+'\nEntrega: '+(form.fecha||'')+'\nNombre: '+(form.cliente||'')}
+function render(){const m=$('#m');
+if(!API){m.innerHTML='<div class="box">Esta página aún no está configurada.</div>';return}
+if(C===null){m.innerHTML='<div class="box">No pudimos cargar el menú. Revisa tu conexión.<button class="pri" data-a="retry">Reintentar</button></div>';return}
+if(!C.on){m.innerHTML='<div class="box">'+ERR.off+'</div>';return}
+$('#bz').textContent=C.biz||'Haz tu pedido';
+if(done){m.innerHTML=`<div class="box"><h2 style="margin:0">✔ ¡Pedido recibido!</h2>${done.no?`<p>Tu número de pedido es <b>${esc(done.no)}</b>.</p>`:''}<p>Total: <b>${money(done.total)}</b></p><p class="mu">Nos comunicaremos contigo al teléfono que dejaste.</p>${C.wa?`<a href="https://wa.me/${esc(C.wa)}?text=${encodeURIComponent(done.text)}" target="_blank" rel="noopener"><button class="pri" style="width:100%">Avisar por WhatsApp</button></a>`:''}<button data-a="again">Hacer otro pedido</button></div>`;return}
+const L=lines(),T=L.length?tot():{s:0,i:0,t:0},hoy=ymd(new Date());if(!form.fecha||form.fecha<hoy)form.fecha=hoy;
+m.innerHTML=`<div class="box"><input data-f="q" placeholder="Buscar producto…" value="${esc(q)}"><div class="tiles" id="tl">${tiles()}</div></div>
+<div class="box"><b>Tu pedido</b>${L.map(l=>`<div class="ln"><span>${esc(l.p.name)}<br><span class="mu">${money(l.p.price)}</span></span><span><button data-a="dec" data-c="${esc(l.p.code)}">−</button> <b>${l.q}</b> <button data-a="inc" data-c="${esc(l.p.code)}">+</button></span><b>${money(l.p.price*l.q)}</b></div>`).join('')||'<span class="mu">Toca un producto para agregarlo.</span>'}
+<div class="tt"><span>Subtotal</span><span>${money(T.s)}</span></div><div class="tt"><span>ITBIS (${C.rate}%)</span><span>${money(T.i)}</span></div><div class="tt big"><span>Total</span><span>${money(T.t)}</span></div></div>
+<div class="box"><b>Tus datos</b><input data-f="cliente" placeholder="Nombre" autocomplete="name" value="${esc(form.cliente||'')}"><input data-f="tel" type="tel" placeholder="Teléfono (WhatsApp)" autocomplete="tel" value="${esc(form.tel||'')}"><label class="mu">Fecha de entrega<input data-f="fecha" type="date" min="${hoy}" value="${esc(form.fecha)}"></label>
+<select data-f="pago">${['Efectivo','Tarjeta','Transferencia'].map(x=>`<option${(form.pago||'Efectivo')===x?' selected':''}>${x}</option>`).join('')}</select><textarea data-f="nota" rows="2" placeholder="Dirección o indicaciones (opcional)">${esc(form.nota||'')}</textarea>
+<input class="hp" data-f="hp" tabindex="-1" autocomplete="off" aria-hidden="true" value="${esc(form.hp||'')}"><span class="mu">El pago se hace al recibir o según acordemos contigo.</span><p class="msg" id="er">${esc(msg)}</p>
+<button class="pri" data-a="send"${L.length&&!busy?'':' disabled'}>${busy?'Enviando…':'Enviar pedido'}</button></div>`}
+const tiles=()=>C.products.filter(p=>!q||p.name.toLowerCase().includes(q.toLowerCase())).map(p=>`<button class="tile" data-a="add" data-c="${esc(p.code)}"><b>${esc(p.name)}</b><small>${money(p.price)}</small></button>`).join('')||'<span class="mu">Sin resultados</span>';
+async function send(){const L=lines();if(!L.length)return;const f=form;
+if(!(f.cliente||'').trim()||(f.tel||'').replace(/\D/g,'').length<7){msg='Escribe tu nombre y un teléfono válido.';render();return}
+msg='';busy=true;render();if(!oid)oid='w'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+let j;try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'webOrder',order:{id:oid,cliente:f.cliente,tel:f.tel,fecha:f.fecha,nota:f.nota||'',pago:f.pago||'Efectivo',hp:f.hp||'',items:L.map(l=>({code:l.p.code,qty:l.q}))}})});j=await r.json()}catch(e){j={ok:false,error:'net'}}
+busy=false;if(j.ok){done={no:j.no||'',total:j.total!=null?j.total:tot().t,text:orderText(j.no)};cart={};sv('pd_cart',cart);oid=null}else msg=ERR[j.error]||'No se pudo enviar el pedido.';render()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,c=b.dataset.c;
+if(a==='add'||a==='inc')cart[c]=Math.min(99,(cart[c]||0)+1);else if(a==='dec'){cart[c]=(cart[c]||0)-1;if(cart[c]<=0)delete cart[c]}
+else if(a==='send'){send();return}else if(a==='again'){done=null;msg=''}else if(a==='retry'){init();return}
+sv('pd_cart',cart);render()});
+document.addEventListener('input',e=>{const f=e.target.dataset.f;if(f==='q'){q=e.target.value;$('#tl').innerHTML=tiles();return}if(f){form[f]=e.target.value;sv('pd_form',form)}});
+async function init(){if(API){try{C=await (await fetch(API+(API.includes('?')?'&':'?')+'action=catalog')).json()}catch(e){C=null}}render()}
+init();
+</script></body></html>
