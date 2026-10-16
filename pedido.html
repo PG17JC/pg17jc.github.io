@@ -26,7 +26,7 @@ const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){retu
 const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const T=(new URLSearchParams(location.search).get('t')||'principal').toLowerCase();
 let mi=0,C=null,cart=ld('pd_cart',{}),form=ld('pd_form',{}),q='',oid=null,done=null,busy=false,msg='';
-const ERR={off:'Los pedidos por internet no están disponibles en este momento.',busy:'Hay muchos pedidos ahora mismo. Intenta de nuevo en unos minutos.',fecha:'Elige una fecha de entrega desde hoy hasta dentro de 60 días.',bad:'Revisa tus datos: nombre, teléfono y al menos un producto.',net:'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo (no se duplicará el pedido).'};
+const ERR={off:'Los pedidos por internet no están disponibles en este momento.',busy:'Hay muchos pedidos ahora mismo. Intenta de nuevo en unos minutos.',fecha:'Elige una fecha de entrega desde hoy hasta dentro de 60 días.',bad:'Revisa tus datos: nombre, teléfono y al menos un producto.',cierre:'Ya no recibimos pedidos para hoy (se aceptan hasta 20 minutos antes del cierre). Elige otro día.',cerrado:'Ese día la tienda no abre. Elige otra fecha.',net:'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo (no se duplicará el pedido).'};
 const P=c=>C.products.find(p=>p.code===c);
 const lines=()=>Object.keys(cart).filter(c=>cart[c]>0&&P(c)).map(c=>({p:P(c),q:cart[c]}));
 const tot=()=>{const s=lines().reduce((t,l)=>t+l.p.price*l.q,0),i=s*C.rate/100;return{s,i,t:s+i}};
@@ -37,11 +37,11 @@ if(C===null){m.innerHTML='<div class="box">No pudimos cargar el menú. Revisa tu
 if(!C.on){m.innerHTML='<div class="box">'+ERR.off+'</div>';return}
 $('#bz').textContent=C.biz||'Haz tu pedido';
 if(done){m.innerHTML=`<div class="box"><h2 style="margin:0">✔ ¡Pedido recibido!</h2>${done.no?`<p>Tu número de pedido es <b>${esc(done.no)}</b>.</p>`:''}<p>Total: <b>${money(done.total)}</b></p><p class="mu">Nos comunicaremos contigo al teléfono que dejaste.</p>${C.wa?`<a href="https://wa.me/${esc(C.wa)}?text=${encodeURIComponent(done.text)}" target="_blank" rel="noopener"><button class="pri" style="width:100%">Avisar por WhatsApp</button></a>`:''}<button data-a="again">Hacer otro pedido</button></div>`;return}
-const L=lines(),T=L.length?tot():{s:0,i:0,t:0},hoy=ymd(new Date());if(!form.fecha||form.fecha<hoy)form.fecha=hoy;
+const L=lines(),T=L.length?tot():{s:0,i:0,t:0},hoy=minDate();if(!form.fecha||form.fecha<hoy)form.fecha=hoy;
 m.innerHTML=`${mediaHtml()}<div class="box"><input data-f="q" placeholder="Buscar producto…" value="${esc(q)}"><div class="tiles" id="tl">${tiles()}</div></div>
 <div class="box"><b>Tu pedido</b>${L.map(l=>`<div class="ln"><span>${esc(l.p.name)}<br><span class="mu">${money(l.p.price)}</span></span><span><button data-a="dec" data-c="${esc(l.p.code)}">−</button> <b>${l.q}</b> <button data-a="inc" data-c="${esc(l.p.code)}">+</button></span><b>${money(l.p.price*l.q)}</b></div>`).join('')||'<span class="mu">Toca un producto para agregarlo.</span>'}
 <div class="tt"><span>Subtotal</span><span>${money(T.s)}</span></div><div class="tt"><span>ITBIS (${C.rate}%)</span><span>${money(T.i)}</span></div><div class="tt big"><span>Total</span><span>${money(T.t)}</span></div></div>
-<div class="box"><b>Tus datos</b><input data-f="cliente" placeholder="Nombre" autocomplete="name" value="${esc(form.cliente||'')}"><input data-f="tel" type="tel" placeholder="Teléfono (WhatsApp)" autocomplete="tel" value="${esc(form.tel||'')}"><label class="mu">Fecha de entrega<input data-f="fecha" type="date" min="${hoy}" value="${esc(form.fecha)}"></label>
+<div class="box"><b>Tus datos</b><input data-f="cliente" placeholder="Nombre" autocomplete="name" value="${esc(form.cliente||'')}"><input data-f="tel" type="tel" placeholder="Teléfono (WhatsApp)" autocomplete="tel" value="${esc(form.tel||'')}">${horNote()}<label class="mu">Fecha de entrega<input data-f="fecha" type="date" min="${hoy}" value="${esc(form.fecha)}"></label>
 <select data-f="pago">${['Efectivo','Tarjeta','Transferencia'].map(x=>`<option${(form.pago||'Efectivo')===x?' selected':''}>${x}</option>`).join('')}</select><textarea data-f="nota" rows="2" placeholder="Dirección o indicaciones (opcional)">${esc(form.nota||'')}</textarea>
 <input class="hp" data-f="hp" tabindex="-1" autocomplete="off" aria-hidden="true" value="${esc(form.hp||'')}"><span class="mu">El pago se hace al recibir o según acordemos contigo.</span><p class="msg" id="er">${esc(msg)}</p>
 <button class="pri" data-a="send"${L.length&&!busy?'':' disabled'}>${busy?'Enviando…':'Enviar pedido'}</button></div>`}
@@ -51,9 +51,14 @@ if(m.type==='video')body=`<video src="${esc(m.url)}" controls muted playsinline 
 else if(m.type==='embed'&&OKE.some(x=>String(m.url).startsWith(x)))body=`<iframe src="${esc(m.url)}" style="width:100%;aspect-ratio:16/9;border:0;border-radius:10px" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
 else body=`<img src="${esc(m.url)}" alt="${esc(m.title||'')}" style="width:100%;border-radius:10px">`;
 return `<div class="box col2" id="mk"><b>Promociones</b>${body}${m.title?`<div class="mu">${esc(m.title)}</div>`:''}${M.length>1?`<div class="tt"><button data-a="mp">‹</button><span class="mu">${(mi%M.length)+1} / ${M.length}</span><button data-a="mn">›</button></div>`:''}</div>`}
+const minDate=()=>{const h=C.hoy||ymd(new Date());if(C.sameDay===false){const d=new Date(h+'T12:00:00');d.setDate(d.getDate()+1);return ymd(d)}return h};
+const DNs=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const horNote=()=>{if(!(C.hor&&C.hor.length))return '';const ab=[1,2,3,4,5,6,0].map(d=>C.hor.find(x=>x.d===d)).filter(x=>x&&x.on),ce=(C.closed||[]).map(d=>DNs[d]);
+return `<div class="mu">🕘 Horario: ${ab.map(x=>DNs[x.d]+' '+esc(x.a)+'–'+esc(x.c)).join(' · ')||'—'}${ce.length?' · Cerrado: '+ce.join(', '):''}</div><div class="${C.sameDay===false?'msg':'mu'}">${C.sameDay===false?'Ya no recibimos pedidos para hoy: elige otro día.':(C.cutoff?'Pedidos para hoy: hasta las '+esc(C.cutoff)+'.':'')}</div>`};
 const tiles=()=>C.products.filter(p=>!q||p.name.toLowerCase().includes(q.toLowerCase())).map(p=>`<button class="tile" data-a="add" data-c="${esc(p.code)}">${p.img?`<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()">`:''}<b>${esc(p.name)}</b><small>${money(p.price)}</small></button>`).join('')||'<span class="mu">Sin resultados</span>';
 async function send(){const L=lines();if(!L.length)return;const f=form;
 if(!(f.cliente||'').trim()||(f.tel||'').replace(/\D/g,'').length<7){msg='Escribe tu nombre y un teléfono válido.';render();return}
+if((C.closed||[]).includes(new Date(f.fecha+'T12:00:00').getDay())){msg=ERR.cerrado;render();return}
 msg='';busy=true;render();if(!oid)oid='w'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
 let j;try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'webOrder',t:T,order:{id:oid,cliente:f.cliente,tel:f.tel,fecha:f.fecha,nota:f.nota||'',pago:f.pago||'Efectivo',hp:f.hp||'',items:L.map(l=>({code:l.p.code,qty:l.q}))}})});j=await r.json()}catch(e){j={ok:false,error:'net'}}
 busy=false;if(j.ok){done={no:j.no||'',total:j.total!=null?j.total:tot().t,text:orderText(j.no)};cart={};sv('pd_cart',cart);oid=null}else msg=ERR[j.error]||'No se pudo enviar el pedido.';render()}
