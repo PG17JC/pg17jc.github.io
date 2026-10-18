@@ -1,6 +1,6 @@
 // Guarda la app para que abra sin internet. Las páginas (.html) se piden SIEMPRE primero a internet
 // (con 4 s de espera) para que las actualizaciones aparezcan al recargar; si no hay internet, usa la copia guardada.
-const V='caja-v11',SHELL=['./','index.html','manifest.webmanifest','icon.svg','pedido.html'];
+const V='caja-v12',SHELL=['./','index.html','manifest.webmanifest','icon.svg','pedido.html'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
