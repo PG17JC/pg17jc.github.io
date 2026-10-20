@@ -1,6 +1,6 @@
 // Guarda la app para que abra sin internet (compatible con Cloudflare Pages y GitHub Pages).
 // Las páginas se piden primero a internet (4 s) para ver actualizaciones; si falla, se usa la copia guardada.
-const V='caja-v13',SHELL=['./','index.html','pedido.html','manifest.webmanifest','icon.svg'];
+const V='caja-v14',SHELL=['./','index.html','pedido.html','manifest.webmanifest','icon.svg'];
 const CDN=['https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js','https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'];
 // Cloudflare redirige /index.html -> / y /pedido.html -> /pedido; una respuesta "redirigida" no se puede entregar a una navegación.
 const clean=async r=>{if(!r.redirected)return r;const b=await r.blob();return new Response(b,{status:r.status,statusText:r.statusText,headers:r.headers})};
