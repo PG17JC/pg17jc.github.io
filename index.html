@@ -68,12 +68,31 @@ textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid va
 .lb{display:inline-block;padding:1px 9px;border-radius:10px;font-size:11px;font-weight:bold;color:#fff}.lb.r{background:#c0392b}.lb.y{background:#f2c200;color:#222}.lb.g{background:#1a9a55}.lb.x{background:#777}
 .ck{display:flex;gap:8px;align-items:center}.rl{display:grid;gap:6px;padding:8px 0;border-bottom:1px dashed var(--bd)}.pm{display:flex;flex-wrap:wrap;gap:6px 14px}.pm label{display:flex;gap:4px;align-items:center}
 @media print{header,main,#md,.no-print{display:none!important}.ov{position:static;background:none;padding:0}.inv{border:0;page-break-after:always}}
-header,.card,.box,.kpi>div,.wrap,.sb,.oc{-webkit-backdrop-filter:var(--bf,none);backdrop-filter:var(--bf,none)}
-:root[data-theme="azul"] .card,:root[data-theme="azul"] .box,:root[data-theme="azul"] .wrap,:root[data-theme="azul"] .kpi>div,:root[data-theme="azul"] .oc{border-radius:14px;box-shadow:0 4px 18px rgba(80,130,190,.12)}
+header,.card,.box,.kpi>div,.wrap,.sb,.oc,.dc,.dk{-webkit-backdrop-filter:var(--bf,none);backdrop-filter:var(--bf,none)}
+:root[data-theme="azul"] .dc,:root[data-theme="azul"] .dk,:root[data-theme="azul"] .card,:root[data-theme="azul"] .box,:root[data-theme="azul"] .wrap,:root[data-theme="azul"] .kpi>div,:root[data-theme="azul"] .oc{border-radius:14px;box-shadow:0 4px 18px rgba(80,130,190,.12)}
 :root[data-theme="azul"] button:not(.pri):not(.on),:root[data-theme="azul"] select,:root[data-theme="azul"] input:not([type=checkbox]),:root[data-theme="azul"] textarea{background:rgba(255,255,255,.55)}
-:root[data-theme="rosa"] .card,:root[data-theme="rosa"] .box,:root[data-theme="rosa"] .wrap,:root[data-theme="rosa"] .kpi>div{border-radius:14px}
-:root[data-theme="eco"] .card,:root[data-theme="eco"] .box,:root[data-theme="eco"] .wrap,:root[data-theme="eco"] .kpi>div{border-radius:12px;box-shadow:0 2px 10px rgba(47,125,79,.08)}
+:root[data-theme="rosa"] .dc,:root[data-theme="rosa"] .dk,:root[data-theme="rosa"] .card,:root[data-theme="rosa"] .box,:root[data-theme="rosa"] .wrap,:root[data-theme="rosa"] .kpi>div{border-radius:14px}
+:root[data-theme="eco"] .dc,:root[data-theme="eco"] .dk,:root[data-theme="eco"] .card,:root[data-theme="eco"] .box,:root[data-theme="eco"] .wrap,:root[data-theme="eco"] .kpi>div{border-radius:12px;box-shadow:0 2px 10px rgba(47,125,79,.08)}
 #pal{border:0;background:none;font-size:18px;padding:2px 6px}
+.dash{display:grid;gap:12px;width:100%}.dhd{margin-bottom:0}.dg{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.dc{grid-column:span 12;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.dc h4{margin:0;font-size:13px;font-weight:700;color:var(--mu)}
+.dkr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.dk{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0;overflow:hidden}
+.dk b{font-size:20px;line-height:1.2;overflow-wrap:anywhere}.spk{width:100%;height:26px;margin-top:4px;display:block}
+.dn{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.dsv{width:118px;height:118px;flex:none}.dct{font-size:5.4px;font-weight:700;fill:var(--tx)}.dcs{font-size:2.5px;fill:var(--mu)}
+.dlg{list-style:none;margin:0;padding:0;flex:1;min-width:150px;display:grid;gap:5px;font-size:13px}.dlg li{display:grid;grid-template-columns:10px 1fr auto 34px;gap:6px;align-items:center}
+.dlg i{width:10px;height:10px;border-radius:3px}.dlg span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dlg small{color:var(--mu);text-align:right}
+.dgl{display:flex;flex-direction:column;gap:4px;flex:1;min-width:140px}.dnone{padding:18px 0;text-align:center}
+.lc{position:relative;padding-top:14px}.lcy{position:absolute;top:0;left:0}.lcs{width:100%;height:170px;display:block}.lcx{display:flex;justify-content:space-between;color:var(--mu)}
+.lg{display:flex;flex-wrap:wrap;gap:12px;font-size:12px}.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.dbc{display:flex;align-items:stretch;gap:5px;height:140px}.dbc>div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center}
+.dbc .bw{flex:1;width:100%;display:flex;align-items:flex-end;gap:2px;min-height:0}.dbc .bw i{flex:1;border-radius:4px 4px 0 0;min-height:2px}
+.dbc small{font-size:10px;color:var(--mu);margin-top:3px;white-space:nowrap}.dbc2{height:170px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips span{background:var(--bd);border-radius:999px;padding:2px 10px;font-size:13px}
+@media(min-width:1000px){.s3{grid-column:span 3}.s4{grid-column:span 4}.s6{grid-column:span 6}.s8{grid-column:span 8}}
+@media(min-width:620px) and (max-width:999px){.s4{grid-column:span 6}.s6,.s8{grid-column:span 12}}
+@media(max-width:620px){.dkr{grid-template-columns:1fr 1fr}.dk b{font-size:17px}.dkr .dk:nth-child(5){grid-column:1/-1}}
 </style></head>
 <body>
 <header><h1><span id="lgo">🧾</span> Caja Registradora</h1><span id="st" class="mu"></span><span id="tn" class="mu"></span><select id="tsel" data-f="tsel" hidden style="max-width:170px"></select><button id="pal" data-a="look" title="Apariencia" aria-label="Apariencia">🎨</button><button id="who" data-a="mycount" title="Mi cuenta" style="border:0;background:none;text-decoration:underline;color:var(--mu)"></button><button data-a="logout" id="lo" hidden>Salir</button>
@@ -104,7 +123,7 @@ function nc(){return{name:'',pay:'Efectivo',rec:'',disc:'',lines:[],ped:false,te
 const prod=c=>cat.find(p=>p.code===c)||{code:c,name:c+' (eliminado)',price:0};
 const ep=l=>l.price!=null?l.price:prod(l.code).price;
 const fno=n=>'F-'+String(n).padStart(4,'0');
-const APP_V='v13';
+const APP_V='v14';
 const dt2=ts=>ts?new Date(ts).toLocaleString('es-DO'):'—';
 const fmtMin=m=>m==null?'—':m<60?Math.round(m)+' min':m<1440?Math.floor(m/60)+' h '+Math.round(m%60)+' min':Math.floor(m/1440)+' d '+Math.round((m%1440)/60)+' h';
 const sb=()=>`<span>Cliente ${act+1}: <b>${money(calc(clients[act]).total)}</b></span><button class="pri" data-a="subact"${calc(clients[act]).total?'':' disabled'}>${clients[act].ped?'Guardar pedido':'Someter'}</button>`;
@@ -280,12 +299,69 @@ return `<div class="set" style="max-width:950px"><p class="mu">Cada sueldo tiene
 const LBL=k=>k.length===10?k.split('-').reverse().join('/'):MESN(k);
 const fpick=()=>`<span class="step"><button data-a="fm" data-v="mes"${fmode==='mes'?' class="on"':''}>Mensual</button><button data-a="fm" data-v="dia"${fmode==='dia'?' class="on"':''}>Diaria</button></span>${fmode==='dia'?`<label>Día <input type="date" data-f="dia" value="${dia}"></label>`:`<label>Mes <input type="month" data-f="mes" value="${mes}"></label>`}`;
 const repBox=()=>sy()&&can('fin')?`<div class="box"><b>📧 Reporte de cierre por correo</b><label class="ck"><input type="checkbox" data-f="con"${cierre.on?' checked':''}> Enviar el reporte cada día a las <select data-f="chr">${[...Array(24)].map((_,h)=>`<option value="${h}"${+cierre.hora===h?' selected':''}>${p2(h)}:00</option>`).join('')}</select></label><span class="mu">Quiénes lo reciben:</span>${staff.map(u=>`<label class="ck"><input type="checkbox" data-f="cid" data-uid="${esc(u.id)}"${(cierre.ids||[]).includes(u.id)?' checked':''}${u.mail?'':' disabled'}> ${esc(u.name)}${u.mail?'':' — sin correo'}</label>`).join('')}<input data-f="cex" placeholder="Otros correos (separados por coma)" value="${esc(cierre.extra||'')}"><label class="ck"><input type="checkbox" data-f="cadj"${cierre.adj!==false?' checked':''}> Adjuntar los datos del día (CSV, se abren en Excel)</label><div class="bar" style="margin:0"><button data-a="repnow">Enviar reporte ahora (prueba)</button></div><span class="mu">Incluye ventas, gastos, más y menos vendidos, pedidos (completados, pendientes, cancelados y perdidos) y tu meta. Para que se envíe solo, hay que ejecutar "activarReportes" una vez en el script.</span></div>`:'';
-function finView(){const K=fmode==='dia'?dia:mes,f=fin(K),mx=Math.max(f.ing,f.gas,1),row=(l,v,c,m,fm=money)=>`<div class="br"><span title="${l}">${l}</span><div class="bt"><i style="width:${Math.max(0,v)/m*100}%;background:${c}"></i></div><b>${fm(v)}</b></div>`,
+// ===== Dashboard de Finanzas (v14) =====
+let fview=store.get('fview','dash');
+const fvt=()=>`<span class="step"><button data-a="fv" data-v="dash"${fview!=='det'?' class="on"':''}>📊 Dashboard</button><button data-a="fv" data-v="det"${fview==='det'?' class="on"':''}>📋 Detalle</button></span>`;
+const PAL=['var(--ac)','#e08a1e','#2e9e5b','#8e6bd0','#d4527a','#20a4b8','#9aa6b2'],PAYC={Efectivo:'#2e9e5b',Tarjeta:'var(--ac)',Transferencia:'#e08a1e'};
+const mshort=n=>{const a=Math.abs(n),g=n<0?'-':'';return g+(a>=1e6?(a/1e6).toFixed(1)+' M':a>=1e4?Math.round(a/1e3)+' k':a>=1e3?(a/1e3).toFixed(1)+' k':String(Math.round(a)))};
+const dpct=(c,p,inv,lb)=>{if(!p)return `<small class="mu">${c?'sin datos del '+lb:'—'}</small>`;const d=(c-p)/Math.abs(p)*100,up=d>=0;return `<small class="${(inv?!up:up)?'pos':'neg'}">${up?'▲':'▼'} ${Math.abs(d).toFixed(0)}% vs. ${lb}</small>`};
+function spark(v,c){if(v.length<2)return '';const mn=Math.min(...v),mx=Math.max(...v),r=(mx-mn)||1,pts=v.map((y,i)=>(i/(v.length-1)*100).toFixed(1)+','+(26-(y-mn)/r*24).toFixed(1)).join(' ');return `<svg class="spk" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>`}
+const dtxt=(txt,sub)=>`<text x="21" y="${sub?20.5:22.5}" text-anchor="middle" class="dct">${txt}</text>${sub?`<text x="21" y="26" text-anchor="middle" class="dcs">${sub}</text>`:''}`;
+function ring(p,c,txt,sub){p=Math.max(0,Math.min(100,p));return `<svg viewBox="0 0 42 42" class="dsv" role="img"><circle r="15.9155" cx="21" cy="21" fill="none" stroke="var(--bd)" stroke-width="6"/>${p>0?`<circle r="15.9155" cx="21" cy="21" fill="none" stroke="${c}" stroke-width="6" stroke-linecap="round" stroke-dasharray="${p} ${100-p}" stroke-dashoffset="25"/>`:''}${dtxt(txt,sub)}</svg>`}
+function donut(parts,txt,sub){parts=parts.filter(x=>x.v>0);const T=parts.reduce((t,x)=>t+x.v,0);if(T<=0)return '<div class="mu dnone">Sin datos en este período.</div>';let off=25;const R=15.9155;
+const segs=parts.map(x=>{const p=x.v/T*100,e=`<circle r="${R}" cx="21" cy="21" fill="none" stroke="${x.c}" stroke-width="6" stroke-dasharray="${p.toFixed(2)} ${(100-p).toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"><title>${esc(x.l)}: ${esc(x.t||money(x.v))} (${p.toFixed(0)}%)</title></circle>`;off-=p;return e}).join('');
+return `<div class="dn"><svg viewBox="0 0 42 42" class="dsv" role="img"><circle r="${R}" cx="21" cy="21" fill="none" stroke="var(--bd)" stroke-width="6"/>${segs}${dtxt(txt,sub)}</svg><ul class="dlg">${parts.map(x=>`<li><i style="background:${x.c}"></i><span title="${esc(x.l)}">${esc(x.l)}</span><b>${esc(x.t||money(x.v))}</b><small>${(x.v/T*100).toFixed(0)}%</small></li>`).join('')}</ul></div>`}
+function lineChart(labels,series){const N=labels.length;if(!N)return '<div class="mu dnone">Sin días para mostrar todavía.</div>';
+const mx=Math.max(1,...series.flatMap(x=>x.v)),W=600,H=170,X=i=>N<2?W/2:i/(N-1)*W,Y=v=>H-4-Math.max(0,v)/mx*(H-12);
+const grid=[0,.5,1].map(g=>`<line x1="0" x2="${W}" y1="${Y(mx*g).toFixed(1)}" y2="${Y(mx*g).toFixed(1)}" stroke="var(--bd)" stroke-width="1" vector-effect="non-scaling-stroke"${g?' stroke-dasharray="3 4"':''}/>`).join('');
+const paths=series.map(x=>{const pts=x.v.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1)).join(' ');return (x.area&&N>1?`<polygon points="0,${H} ${pts} ${W},${H}" fill="${x.c}" opacity=".16"/>`:'')+(N>1?`<polyline points="${pts}" fill="none" stroke="${x.c}" stroke-width="2.4" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>`:`<circle cx="${X(0)}" cy="${Y(x.v[0]).toFixed(1)}" r="4" fill="${x.c}"/>`)}).join('');
+const bw=W/N,hits=labels.map((l,i)=>`<rect x="${(X(i)-bw/2).toFixed(1)}" y="0" width="${bw.toFixed(1)}" height="${H}" fill="transparent"><title>${esc(l)} · ${series.map(x=>x.n+' '+money(x.v[i])).join(' · ')}</title></rect>`).join('');
+const pick=N<=6?labels.map((_,i)=>i):[0,Math.round((N-1)/4),Math.round((N-1)/2),Math.round((N-1)*3/4),N-1];
+return `<div class="lc"><small class="mu lcy">${mshort(mx)}</small><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" class="lcs">${grid}${paths}${hits}</svg><div class="lcx">${[...new Set(pick)].map(i=>`<small>${esc(labels[i])}</small>`).join('')}</div></div>`}
+const colBars=items=>{const mx=Math.max(1,...items.map(x=>x.v));return `<div class="dbc">${items.map(x=>`<div title="${esc(x.l)}: ${money(x.v)}"><span class="bw"><i style="height:${x.v/mx*100}%;background:var(--ac);opacity:${x.v===mx&&x.v>0?1:.5}"></i></span><small>${esc(x.l)}</small></div>`).join('')}</div>`};
+function dAgg(K){const A={day:{},hr:Array(24).fill(0),wd:Array(7).fill(0),pay:{},prod:{},n:0};
+sales.forEach(s=>{if(!okS(s))return;const d=ymd(s.ts),net=s.sub-(s.disc||0),o=A.day[d]||(A.day[d]={ing:0,n:0});o.ing+=net;o.n++;
+if(!d.startsWith(K))return;A.n++;const dt=new Date(s.ts);A.hr[dt.getHours()]+=net;A.wd[dt.getDay()]+=net;const pg=s.pago||'Otro';A.pay[pg]=(A.pay[pg]||0)+(+s.total||0);
+(s.items||[]).forEach(i=>{const o2=A.prod[i.code]||(A.prod[i.code]={name:i.name,v:0,q:0});o2.v+=i.price*i.qty;o2.q+=i.qty})});return A}
+function dGas(){const m={},nm={};exps.forEach(x=>{m[x.date]=(m[x.date]||0)+x.amt});return d=>{const mo=d.slice(0,7),dim=new Date(+d.slice(0,4),+d.slice(5,7),0).getDate();if(nm[mo]==null)nm[mo]=nomina(mo);return(m[d]||0)+nm[mo]/dim}}
+function finDash(){const K=fmode==='dia'?dia:mes,isD=K.length===10,f=fin(K),A=dAgg(K),G=dGas(),hoy=ymd(new Date()),
+PK=isD?(()=>{const d=new Date(K+'T12:00:00');d.setDate(d.getDate()-1);return ymd(d)})():(()=>{const q=K.split('-').map(Number);return mk(new Date(q[0],q[1]-2,1))})(),pf=fin(PK),lb=isD?'día anterior':'mes anterior',
+days=isD?[...Array(14)].map((_,i)=>{const d=new Date(K+'T12:00:00');d.setDate(d.getDate()-13+i);return ymd(d)}):(()=>{const q=K.split('-').map(Number),dim=new Date(q[0],q[1],0).getDate(),last=hoy.startsWith(K)?+hoy.slice(8):(hoy<K+'-01'?0:dim);return [...Array(last)].map((_,i)=>K+'-'+p2(i+1))})(),
+ingS=days.map(d=>(A.day[d]||{ing:0}).ing),gasS=days.map(G),utS=ingS.map((v,i)=>v-gasS[i]),dl=d=>d.slice(8)+'/'+d.slice(5,7),
+gc=goalCur(),dd=gc?dias(gc.start||hoy):0,prog=gc&&gc.num?Math.min(100,Math.max(0,(isD?fin(K.slice(0,7)):f).ut)/gc.num*100):null,
+pr=Object.values(A.prod).sort((a,b)=>b.v-a.v),p5=pr.slice(0,5),otros=pr.slice(5).reduce((t,x)=>t+x.v,0),
+prodParts=p5.map((x,i)=>({l:x.name,v:x.v,c:PAL[i],t:money(x.v)})).concat(otros>0?[{l:'Otros',v:otros,c:PAL[6]}]:[]),prT=pr.reduce((t,x)=>t+x.v,0),
+gcats=CATS.map(c=>({l:c,v:mexp(K).filter(x=>x.cat===c).reduce((t,x)=>t+x.amt,0)})).concat([{l:'Sueldos',v:f.sue}]).map((x,i)=>({...x,c:PAL[i%6]})),
+payParts=Object.keys(A.pay).map((k,i)=>({l:k,v:A.pay[k],c:PAYC[k]||PAL[(i+3)%7]})),
+WD=[1,2,3,4,5,6,0],WN=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+nzh=A.hr.map((v,h)=>v>0?h:-1).filter(h=>h>=0),h0=nzh.length?Math.min(...nzh):8,h1=nzh.length?Math.max(...nzh):h0+5,
+hrItems=[...Array(h1-h0+1)].map((_,i)=>({l:String(h0+i),v:A.hr[h0+i]})),
+p=pstats(K),pt=p.loc.t+p.ped.t,ps=prodStats(K),sold=ps.some(x=>x.q>0),top5=ps.filter(x=>x.q>0).slice(0,5),low3=sold?ps.filter(x=>!top5.includes(x)).slice(-3).reverse():[],
+m6=[...Array(6)].map((_,i)=>{const d=new Date();d.setDate(1);d.setMonth(d.getMonth()-5+i);const k=mk(d);return{k,...fin(k)}}),mx6=Math.max(...m6.map(r=>Math.max(r.ing,r.gas)),1),
+mg=f.ing>0?f.ut/f.ing*100:null,tk=f.n?f.ing/f.n:null;
+const kp=(t,v,x,sp)=>`<div class="dk"><small class="mu">${t}</small><b>${v}</b>${x}${sp||''}</div>`;
+return `<div class="dash"><div class="bar dhd">${fpick()}${fvt()}<span class="mu">${f.n} factura${f.n===1?'':'s'} · ${LBL(K)}</span></div>
+<div class="dkr">${kp('Ingresos',money(f.ing),dpct(f.ing,pf.ing,false,lb),spark(ingS,'var(--ac)'))}${kp('Gastos',money(f.gas),dpct(f.gas,pf.gas,true,lb),spark(gasS,'#e08a1e'))}${kp('Ganancia neta',`<span class="${f.ut>=0?'pos':'neg'}">${money(f.ut)}</span>`,dpct(f.ut,pf.ut,false,lb),spark(utS,f.ut>=0?'#2e9e5b':'var(--bad)'))}${kp('Ticket promedio',tk==null?'—':money(tk),`<small class="mu">${f.n} factura${f.n===1?'':'s'}</small>`)}${kp('Margen neto',mg==null?'—':mg.toFixed(0)+' %',`<small class="mu">ganancia / ingresos</small>`)}</div>
+<div class="dg">
+<section class="dc s8"><h4>${isD?'Últimos 14 días':'Ingresos y gastos por día'}</h4><div class="lg"><span><i style="background:var(--ac)"></i>Ingresos</span><span><i style="background:#e08a1e"></i>Gastos</span></div>${lineChart(days.map(dl),[{n:'Ingresos',c:'var(--ac)',v:ingS,area:true},{n:'Gastos',c:'#e08a1e',v:gasS}])}<small class="mu">Los sueldos se reparten entre los días del mes.</small></section>
+<section class="dc s4"><h4>🎯 Meta</h4>${gc?`<div class="dn">${prog!=null?ring(prog,'#2e9e5b',prog.toFixed(0)+'%','de la meta'):''}<div class="dgl"><b>${esc(gc.text)}</b><small class="mu">⏱ ${dd} día${dd===1?'':'s'} sin cumplirse</small>${prog!=null?`<small class="mu">Ganancia de ${MESN(K.slice(0,7))}${prog>=100?' · ¡alcanzada!':''}</small>`:''}<span><button class="pri" data-a="gldone">✔ Cumplida</button> <button class="x" data-a="gldel" data-id="${esc(gc.id)}" title="Quitar esta meta">×</button></span></div></div>`:'<span class="mu">Sin metas. Agrégalas en 📋 Detalle.</span>'}
+<h4 style="margin-top:12px">¿Cómo se reparte la ganancia?</h4><label class="mu">Dueño recibe <input data-f="opct" type="number" min="0" max="100" step="1" value="${opct}" style="width:64px"> %</label>${f.ut>0?donut([{l:'Dueño',v:f.du,c:'#2e9e5b'},{l:'Empresa',v:f.emp,c:'var(--ac)'}],mshort(f.ut),'ganancia'):'<span class="mu">No hay ganancia que repartir en este período.</span>'}</section>
+<section class="dc s4"><h4>Ventas por producto</h4>${donut(prodParts,mshort(prT),'antes de dscto.')}</section>
+<section class="dc s4"><h4>Gastos por categoría</h4>${donut(gcats,mshort(f.gas),'total')}</section>
+<section class="dc s4"><h4>Cobrado por método de pago</h4>${donut(payParts,mshort(payParts.reduce((t,x)=>t+x.v,0)),'con ITBIS')}</section>
+<section class="dc s4"><h4>Ventas por día de la semana</h4>${A.n?colBars(WD.map(d=>({l:WN[d],v:A.wd[d]}))):'<div class="mu dnone">Sin ventas en este período.</div>'}</section>
+<section class="dc s4"><h4>Ventas por hora</h4>${A.n?colBars(hrItems):'<div class="mu dnone">Sin ventas en este período.</div>'}</section>
+<section class="dc s4"><h4>📦 Pedidos y ventas en local</h4>${pt>0?`<div class="bt"><i style="width:${p.loc.t/pt*100}%;background:var(--ac)"></i><i style="width:${p.ped.t/pt*100}%;background:#2e9e5b"></i></div><div class="tt"><span>🔵 En local (${p.loc.n})</span><b>${money(p.loc.t)}</b></div><div class="tt"><span>🟢 Por pedidos (${p.ped.n})</span><b>${money(p.ped.t)}</b></div>`:'<span class="mu">Sin ventas en este período.</span>'}<div class="chips"><span title="Realizados">✔ ${p.done.n}</span><span title="Perdidos">😞 ${p.lost.n}</span><span title="Cancelados">✖ ${p.canc.n}</span><span title="Con error">⚠ ${p.err.n}</span><span title="Pendientes">⏳ ${p.pend.n}</span></div><div class="tt"><span class="mu">⏱ Emisión promedio</span><b>${fmtMin(p.avg)}</b></div></section>
+<section class="dc s6"><h4>Últimos 6 meses</h4><div class="lg"><span><i style="background:var(--ac)"></i>Ingresos</span><span><i style="background:#e08a1e"></i>Gastos</span><span class="mu">Debajo: ganancia</span></div><div class="dbc dbc2">${m6.map(r=>`<div title="${esc(MESN(r.k))}: ingresos ${money(r.ing)} · gastos ${money(r.gas)} · ganancia ${money(r.ut)}"><span class="bw"><i style="height:${r.ing/mx6*100}%;background:var(--ac)"></i><i style="height:${r.gas/mx6*100}%;background:#e08a1e"></i></span><small>${r.k.slice(5)}/${r.k.slice(2,4)}</small><small class="${r.ut>=0?'pos':'neg'}">${mshort(r.ut)}</small></div>`).join('')}</div></section>
+<section class="dc s6"><h4>Productos: más y menos vendidos</h4>${sold?`<div class="bars">${top5.map(x=>bar2(esc(x.name),x.q,'var(--ac)',top5[0].q,x.q+' u.')).join('')}</div>${low3.length?`<small class="mu">Los que menos salieron:</small><div class="bars">${low3.map(x=>bar2(esc(x.name),x.q,'#e08a1e',top5[0].q,x.q+' u.')).join('')}</div>`:''}`:'<span class="mu">Sin ventas en este período.</span>'}</section>
+</div><p class="mu">Ingresos = ventas sin ITBIS y después de descuentos. "Ventas por producto" suma precio × cantidad antes del descuento. Metas, reporte por correo y la vista completa están en 📋 Detalle.</p></div>`}
+function finView(){return fview==='det'?finDet():finDash()}
+function finDet(){const K=fmode==='dia'?dia:mes,f=fin(K),mx=Math.max(f.ing,f.gas,1),row=(l,v,c,m,fm=money)=>`<div class="br"><span title="${l}">${l}</span><div class="bt"><i style="width:${Math.max(0,v)/m*100}%;background:${c}"></i></div><b>${fm(v)}</b></div>`,
 cats=CATS.map(c=>[c,mexp(K).filter(x=>x.cat===c).reduce((t,x)=>t+x.amt,0)]).concat([['Sueldos',f.sue]]).filter(r=>r[1]>0),cm=Math.max(...cats.map(r=>r[1]),1),
 tr=(K.length===10?[...Array(7)].map((_,i)=>{const d=new Date(K+'T12:00:00');d.setDate(d.getDate()-6+i);return ymd(d)}):[...Array(6)].map((_,i)=>{const d=new Date();d.setDate(1);d.setMonth(d.getMonth()-5+i);return mk(d)})).map(m=>({m,...fin(m)})),tm=Math.max(...tr.map(r=>Math.max(r.ing,r.gas)),1),
 hoy=ymd(new Date()),gc=goalCur(),pend=goals.filter(g=>!g.done),dd=gc?dias(gc.start||hoy):0,prog=gc&&gc.num?Math.min(100,Math.max(0,(K.length===10?fin(K.slice(0,7)):f).ut)/gc.num*100):null,
 ps=prodStats(K),sold=ps.some(x=>x.q>0),top=ps[0],low=ps[ps.length-1],lows=sold?ps.filter(x=>x.q===low.q):[],pm=sold?top.q:1;
-return `<div class="set" style="max-width:900px"><div class="bar">${fpick()}<span class="mu">${f.n} facturas en el período</span></div>
+return `<div class="set" style="max-width:900px"><div class="bar">${fpick()}${fvt()}<span class="mu">${f.n} facturas en el período</span></div>
 <div class="kpi"><div>Ingresos<b>${money(f.ing)}</b></div><div>Gastos<b>${money(f.gas)}</b></div><div>Ganancia neta<b class="${f.ut>=0?'pos':'neg'}">${money(f.ut)}</b></div>
 <div class="gk">🎯 Meta actual${gc?`<b>${esc(gc.text)}</b><small>⏱ ${dd} día${dd===1?'':'s'} sin cumplirse (desde ${gc.start||hoy})</small>${prog!=null?`<div class="bt"><i style="width:${prog}%;background:#2e9e5b"></i></div><small>Ganancia de ${MESN(K.slice(0,7))}: ${prog.toFixed(0)}% de la meta${prog>=100?' · ¡alcanzada!':''}</small>`:''}<span><button class="pri" data-a="gldone">✔ Marcar cumplida</button> <button class="x" data-a="gldel" data-id="${esc(gc.id)}" title="Quitar esta meta">×</button></span>`:'<b>Sin metas</b><small>Agrega una abajo</small>'}</div></div>
 <div class="box"><b>Metas</b>${pend.slice(1).map((g,i)=>`<div class="tt"><span>${i?'Luego':'➡ Siguiente meta'}: <b>${esc(g.text)}</b></span><button class="x" data-a="gldel" data-id="${esc(g.id)}">×</button></div>`).join('')||'<span class="mu">No hay una meta siguiente todavía.</span>'}
@@ -553,7 +629,7 @@ else if(a==='hfact'){const kk=b.dataset.kk,id=b.dataset.id,o=kk==='v'?null:order
 else if(a==='vtpl'){vTpl();return}
 else if(a==='vparse'){const t=$('#vpaste').value;if(!t.trim())return;showImpV(parseDelim(t));return}
 else if(a==='vimp'){if(impV&&impV.ok.length){const L=impV.ok;L.forEach(x=>sales.push(x));sales.sort((a,b)=>a.ts<b.ts?-1:1);store.set('sales',sales);for(let z=0;z<L.length;z+=25)queue({action:'sales',list:L.slice(z,z+25)});md('');toast('✔ '+L.length+' ventas importadas');impV=null}}
-else if(a==='fm'){fmode=b.dataset.v}
+else if(a==='fm'){fmode=b.dataset.v}else if(a==='fv'){fview=b.dataset.v==='det'?'det':'dash';store.set('fview',fview)}
 else if(a==='repnow'){const j=await apiTry({action:'reportNow'});toast(j.ok?'✔ Reporte enviado':(j.error==='norecip'?'Elige al menos un destinatario con correo.':(ERR[j.error]||'No se pudo enviar.')));return}
 else if(a==='madd'){const n=normMedia($('#mu').value);if(!n){$('#mm2').textContent='Escribe un enlace https:// o el nombre de un archivo (ej. media/promo.mp4).';return}mkt.items=(mkt.items||[]).concat([{id:'m'+Date.now().toString(36),type:n.type,url:n.url,title:$('#mt').value.trim().slice(0,80),on:true}]);saveCfg()}
 else if(a==='mdel'){mkt.items.splice(k,1);saveCfg()}
