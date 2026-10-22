@@ -29,11 +29,12 @@ header,.box{-webkit-backdrop-filter:var(--bf,none);backdrop-filter:var(--bf,none
 :root[data-theme="rosa"] .box{border-radius:14px}:root[data-theme="eco"] .box{border-radius:12px;box-shadow:0 2px 10px rgba(47,125,79,.08)}
 header{display:flex;gap:10px;align-items:center}
 .stp{display:flex;gap:6px}.stp span{flex:1;text-align:center;padding:8px 4px;border-radius:8px;border:1px solid var(--bd);font-size:13px;color:var(--mu)}.stp .on{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:bold}.stp .dn{border-color:var(--ac);color:var(--tx)}
-</style><link rel="icon" href="icon.svg"></head><body>
+</style><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Haz tu pedido en línea"></head><body>
 <header><span id="lgo"></span><h1 id="bz">Haz tu pedido</h1></header><main id="m"><p>Cargando…</p></main>
 <script>
 // ▼ Pega aquí la URL de tu Apps Script (la misma de la app, termina en /exec). No es secreta.
 const API='https://script.google.com/macros/s/AKfycbwH6odWAL6eCLvVIFHwM6kYPSm0RLZQm12SyHVTsO6E4mYTxczlBpkjuzTl_tq8xww4VQ/exec';
+const jf=(u,o,ms)=>{const ac=typeof AbortController!=='undefined'?new AbortController():null,t=ac?setTimeout(()=>ac.abort(),ms||25000):0;return fetch(u,{...(o||{}),signal:ac?ac.signal:undefined}).finally(()=>clearTimeout(t))};
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=n=>'RD$ '+(+n||0).toLocaleString('es-DO',{minimumFractionDigits:2,maximumFractionDigits:2});
 const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
@@ -56,7 +57,7 @@ $('#bz').textContent=TR.biz||'Tu pedido';C={ico:TR.ico,look:TR.look,biz:TR.biz,o
 const bad=TR.estado==='cancelado'||TR.estado==='perdido',idx=TR.estado==='completado'?3:(TR.prog==='listo'?2:TR.prog==='preparando'?1:0);
 m.innerHTML=`<div class="box"><h2 style="margin:0">Pedido ${esc(TR.no)}</h2>${bad?`<p class="msg"><b>Este pedido fue cancelado.</b>${TR.why?' '+esc(TR.why):''}</p>`:`<div class="stp">${STL.map((x,i)=>`<span class="${i===idx?'on':(i<idx?'dn':'')}">${i<idx?'✔ ':''}${x}</span>`).join('')}</div><p>${['Recibimos tu pedido. Pronto empezamos a prepararlo.','Estamos preparando tu pedido.','¡Tu pedido está listo!','Pedido entregado. ¡Gracias!'][idx]}</p>`}<p class="mu">Entrega: ${esc(String(TR.fecha||'').split('-').reverse().join('/'))}</p></div>
 <div class="box"><b>Tu pedido</b>${TR.items.map(i=>`<div class="tt"><span>${i.qty}× ${esc(i.name)}</span></div>`).join('')}<div class="tt big"><span>Total</span><span>${money(TR.total)}</span></div>${TR.abonado>0?`<div class="tt"><span>Abonado</span><span>${money(TR.abonado)}</span></div><div class="tt"><b>Saldo pendiente</b><b>${money(TR.saldo)}</b></div>`:''}</div>${TR.wa?`<a href="https://wa.me/${esc(TR.wa)}?text=${encodeURIComponent('Hola, consulto por mi pedido '+TR.no)}" target="_blank" rel="noopener"><button class="pri" style="width:100%">💬 Escribir por WhatsApp</button></a>`:''}<p class="mu">Esta página se actualiza sola cada 30 segundos.</p>`}
-async function loadTrack(){try{TR=await (await fetch(API+(API.includes('?')?'&':'?')+'action=track&t='+encodeURIComponent(T)+'&s='+encodeURIComponent(SQ))).json()}catch(e){if(TR===null)TR=false}render()}
+async function loadTrack(){try{TR=await (await jf(API+(API.includes('?')?'&':'?')+'action=track&t='+encodeURIComponent(T)+'&s='+encodeURIComponent(SQ))).json()}catch(e){if(TR===null)TR=false}render()}
 function render(){const m=$('#m');if(SQ&&API){trackRender();return}
 if(!API){m.innerHTML='<div class="box">Esta página aún no está configurada.</div>';return}
 if(C===null){m.innerHTML='<div class="box">No pudimos cargar el menú. Revisa tu conexión.<button class="pri" data-a="retry">Reintentar</button></div>';return}
@@ -91,14 +92,14 @@ if(!(f.cliente||'').trim()||(f.tel||'').replace(/\D/g,'').length<7){msg='Escribe
 if(L.some(l=>l.p.var)){waGo();return}
 if((C.closed||[]).includes(new Date(f.fecha+'T12:00:00').getDay())){msg=ERR.cerrado;render();return}
 msg='';busy=true;render();if(!oid)oid='w'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
-let j;try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'webOrder',t:T,order:{id:oid,cliente:f.cliente,tel:f.tel,fecha:f.fecha,nota:f.nota||'',pago:f.pago||'Efectivo',hp:f.hp||'',items:L.map(l=>({code:l.p.code,qty:l.q}))}})});j=await r.json()}catch(e){j={ok:false,error:'net'}}
+let j;try{const r=await jf(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'webOrder',t:T,order:{id:oid,cliente:f.cliente,tel:f.tel,fecha:f.fecha,nota:f.nota||'',pago:f.pago||'Efectivo',hp:f.hp||'',items:L.map(l=>({code:l.p.code,qty:l.q}))}})});j=await r.json()}catch(e){j={ok:false,error:'net'}}
 busy=false;if(j.ok){done={no:j.no||'',total:j.total!=null?j.total:tot().t,text:orderText(j.no,j.trk),trk:j.trk||''};cart={};sv('pd_cart',cart);oid=null}else msg=ERR[j.error]||'No se pudo enviar el pedido.';render()}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,c=b.dataset.c;
 if(a==='add'||a==='inc')cart[c]=Math.min(99,(cart[c]||0)+1);else if(a==='dec'){cart[c]=(cart[c]||0)-1;if(cart[c]<=0)delete cart[c]}
 else if(a==='mp'||a==='mn'){const n=(C.media||[]).length||1;mi=(mi+(a==='mn'?1:n-1))%n;const e2=$('#mk');if(e2)e2.outerHTML=mediaHtml();return}else if(a==='send'){send();return}else if(a==='again'){done=null;msg=''}else if(a==='trk'){loadTrack();return}else if(a==='retry'){init();return}
 sv('pd_cart',cart);render()});
 document.addEventListener('input',e=>{const f=e.target.dataset.f;if(f==='q'){q=e.target.value;$('#tl').innerHTML=tiles();return}if(f){form[f]=e.target.value;sv('pd_form',form)}});
-async function init(){if(SQ&&API){await loadTrack();return}if(API){try{C=await (await fetch(API+(API.includes('?')?'&':'?')+'action=catalog&t='+encodeURIComponent(T))).json()}catch(e){C=null}}render()}
+async function init(){if(SQ&&API){await loadTrack();return}if(API){try{C=await (await jf(API+(API.includes('?')?'&':'?')+'action=catalog&t='+encodeURIComponent(T))).json()}catch(e){C=null}}render()}
 setInterval(()=>{if(!C||done||!C.on)return;const M=C.media||[];if(M.length>1&&M[mi%M.length].type==='image'){mi=(mi+1)%M.length;const e2=$('#mk');if(e2)e2.outerHTML=mediaHtml()}},6000);
 setInterval(()=>{if(SQ&&API&&!document.hidden)loadTrack()},30000);init();
 </script></body></html>
